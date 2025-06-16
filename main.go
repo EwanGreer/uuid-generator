@@ -30,6 +30,10 @@ func main() {
 	e.StaticFS("/js", publicFS)
 	base := template.Must(template.New("base").ParseFS(publicFS, "public/base.html"))
 
+	e.GET("/up", func(c echo.Context) error {
+		return nil
+	})
+
 	e.GET("/", func(c echo.Context) error {
 		uuidType := c.QueryParam("type")
 
