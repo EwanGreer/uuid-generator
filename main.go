@@ -67,7 +67,7 @@ func main() {
 	if port == "" {
 		port = "3000"
 	}
-	e.Logger.Fatal(e.Start(":" + port))
+	e.Logger.Fatal(e.Start("0.0.0.0:" + port))
 }
 
 type templater struct {
