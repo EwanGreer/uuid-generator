@@ -3,6 +3,7 @@
 [tools]
 "asdf:mise-plugins/mise-pipx" = "latest"
 "pipx:commitizen" = "latest"
+"aqua:docker-compose" = "latest"
 
 [tasks]
 
