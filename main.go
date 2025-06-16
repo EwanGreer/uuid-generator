@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"html/template"
 	"log/slog"
+	"net/http"
 	"os"
 
 	"github.com/google/uuid"
@@ -29,6 +30,10 @@ func main() {
 
 	e.StaticFS("/js", publicFS)
 	base := template.Must(template.New("base").ParseFS(publicFS, "public/base.html"))
+
+	e.GET("/up", func(c echo.Context) error {
+		return c.NoContent(http.StatusOK)
+	})
 
 	e.GET("/", func(c echo.Context) error {
 		uuidType := c.QueryParam("type")
