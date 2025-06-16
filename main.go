@@ -17,10 +17,7 @@ import (
 var publicFS embed.FS
 
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		panic(err)
-	}
+	_ = godotenv.Load()
 
 	logger := slog.New(slog.NewJSONHandler(os.Stderr, nil))
 	slog.SetDefault(logger)
@@ -39,7 +36,7 @@ func main() {
 		tmpl := template.Must(base.Clone())
 		t := NewTemplater(publicFS)
 
-		err = t.findTemplate(tmpl, "index")
+		err := t.findTemplate(tmpl, "index")
 		if err != nil {
 			return echo.NewHTTPError(500, fmt.Sprintf("Template parse error: %v", err))
 		}
