@@ -1,0 +1,11 @@
+[env]
+
+[tools]
+"asdf:mise-plugins/mise-pipx" = "latest"
+"pipx:commitizen" = "latest"
+
+[tasks]
+
+[tasks.run]
+description = "run the docker container"
+run = "docker run -p 3000:3000 ghcr.io/ewangreer/uuid-generator"
