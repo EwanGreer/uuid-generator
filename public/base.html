@@ -49,8 +49,26 @@
   <body class="text-base-content min-h-screen roboto">
     <header></header>
     <main>{{ template "content" . }}</main>
-    <footer class="flex justify-center text-center w-full">
-      Author: Ewan Greer
+    <footer
+      class="flex flex-col items-center justify-center w-full px-4 py-6 text-sm text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700 bg-gray-5"
+    >
+      <p class="mb-1">
+        Author:
+        <span class="font-medium text-gray-700 dark:text-gray-200"
+          >Ewan Greer</span
+        >
+      </p>
+      <p>
+        GitHub:
+        <a
+          href="https://github.com/EwanGreer/uuid-generator"
+          class="text-blue-600 dark:text-blue-400 hover:underline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          EwanGreer/uuid-generator
+        </a>
+      </p>
     </footer>
   </body>
 </html>
