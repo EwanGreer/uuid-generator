@@ -68,10 +68,10 @@ func main() {
 		return tmpl.ExecuteTemplate(c.Response(), "base", data)
 	})
 
-	// port := os.Getenv("PORT")
-	// if port == "" {
-	port := "3000"
-	// }
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "3000"
+	}
 	e.Logger.Fatal(e.Start(":" + port))
 }
 
