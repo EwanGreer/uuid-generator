@@ -26,7 +26,7 @@ func main() {
 	e := echo.New()
 
 	e.HideBanner = true
-	e.Use(middleware.Logger())
+	e.Use(middleware.Logger(), middleware.CORS())
 
 	e.StaticFS("/js", publicFS)
 	base := template.Must(template.New("base").ParseFS(publicFS, "public/base.html"))
@@ -68,11 +68,11 @@ func main() {
 		return tmpl.ExecuteTemplate(c.Response(), "base", data)
 	})
 
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "3000"
-	}
-	e.Logger.Fatal(e.Start("0.0.0.0:" + port))
+	// port := os.Getenv("PORT")
+	// if port == "" {
+	port := "3000"
+	// }
+	e.Logger.Fatal(e.Start(":" + port))
 }
 
 type templater struct {
