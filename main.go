@@ -7,6 +7,7 @@ import (
 	"log/slog"
 	"net/http"
 	"os"
+	"slices"
 
 	"github.com/google/uuid"
 	"github.com/joho/godotenv"
@@ -38,6 +39,10 @@ func main() {
 	e.GET("/", func(c echo.Context) error {
 		uuidType := c.QueryParam("type")
 
+		if ok := slices.Contains([]string{"v4", "v7"}, uuidType); !ok {
+			uuidType = "v4"
+		}
+
 		tmpl := template.Must(base.Clone())
 		t := NewTemplater(publicFS)
 
@@ -46,22 +51,21 @@ func main() {
 			return echo.NewHTTPError(500, fmt.Sprintf("Template parse error: %v", err))
 		}
 
-		var uid string
+		var uuidValue string
 		switch uuidType {
 		case "v7":
 			id, err := uuid.NewV7()
 			if err != nil {
 				return err
 			}
-			uid = id.String()
+			uuidValue = id.String()
 		default:
-			uuidType = "v4"
-			uid = uuid.NewString()
+			uuidValue = uuid.NewString()
 		}
 
 		data := map[string]any{
 			"title":        "Page",
-			"uuid":         uid,
+			"uuid":         uuidValue,
 			"selectedType": uuidType,
 		}
 
