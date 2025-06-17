@@ -1,0 +1,31 @@
+service: uuid-generator
+
+image: ewangreer/uuid-generator
+
+servers:
+  web:
+    - 34.74.91.101
+env:
+  host: tech.egreer.info
+
+ssh:
+  user: ewanja.greer
+
+proxy:
+  ssl: true
+  host: tech.egreer.info
+  app_port: 3000
+
+registry:
+  server: ghcr.io
+  username: EwanGreer
+
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+builder:
+  arch: amd64
+
+boot:
+  limit: 10
+  wait: 2
