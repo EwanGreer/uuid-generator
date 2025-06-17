@@ -8,7 +8,6 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/google/uuid"
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -29,43 +28,44 @@ func main() {
 	e.Use(middleware.Logger(), middleware.CORS())
 
 	e.StaticFS("/js", publicFS)
-	base := template.Must(template.New("base").ParseFS(publicFS, "public/base.html"))
+	// base := template.Must(template.New("base").ParseFS(publicFS, "public/base.html"))
 
 	e.GET("/up", func(c echo.Context) error {
 		return c.NoContent(http.StatusOK)
 	})
 
 	e.GET("/", func(c echo.Context) error {
-		uuidType := c.QueryParam("type")
-
-		tmpl := template.Must(base.Clone())
-		t := NewTemplater(publicFS)
-
-		err := t.findTemplate(tmpl, "index")
-		if err != nil {
-			return echo.NewHTTPError(500, fmt.Sprintf("Template parse error: %v", err))
-		}
-
-		var uid string
-		switch uuidType {
-		case "v7":
-			id, err := uuid.NewV7()
-			if err != nil {
-				return err
-			}
-			uid = id.String()
-		default:
-			uuidType = "v4"
-			uid = uuid.NewString()
-		}
-
-		data := map[string]any{
-			"title":        "Page",
-			"uuid":         uid,
-			"selectedType": uuidType,
-		}
-
-		return tmpl.ExecuteTemplate(c.Response(), "base", data)
+		// uuidType := c.QueryParam("type")
+		//
+		// tmpl := template.Must(base.Clone())
+		// t := NewTemplater(publicFS)
+		//
+		// err := t.findTemplate(tmpl, "index")
+		// if err != nil {
+		// 	return echo.NewHTTPError(500, fmt.Sprintf("Template parse error: %v", err))
+		// }
+		//
+		// var uid string
+		// switch uuidType {
+		// case "v7":
+		// 	id, err := uuid.NewV7()
+		// 	if err != nil {
+		// 		return err
+		// 	}
+		// 	uid = id.String()
+		// default:
+		// 	uuidType = "v4"
+		// 	uid = uuid.NewString()
+		// }
+		//
+		// data := map[string]any{
+		// 	"title":        "Page",
+		// 	"uuid":         uid,
+		// 	"selectedType": uuidType,
+		// }
+		//
+		// return tmpl.ExecuteTemplate(c.Response(), "base", data)
+		return c.String(200, "Hello from UUID-Generator")
 	})
 
 	// port := os.Getenv("PORT")
