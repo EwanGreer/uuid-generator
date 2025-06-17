@@ -28,7 +28,7 @@ func main() {
 	e.HideBanner = true
 	e.Use(middleware.Logger(), middleware.CORS())
 
-	e.StaticFS("/js", publicFS)
+	e.StaticFS("/static", publicFS)
 	base := template.Must(template.New("base").ParseFS(publicFS, "public/base.html"))
 
 	e.GET("/up", func(c echo.Context) error {
