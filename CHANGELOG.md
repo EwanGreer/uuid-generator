@@ -1,3 +1,10 @@
+## 0.4.0 (2025-06-18)
+
+### Feat
+
+- update build push triggers
+- favicon
+
 ## 0.3.0 (2025-06-17)
 
 ### Feat
