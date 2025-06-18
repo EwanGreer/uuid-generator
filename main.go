@@ -123,7 +123,7 @@ func NewTemplater(fs embed.FS) *templater {
 func (t *templater) findTemplate(tmpl *template.Template, templateName string) error {
 	_, err := tmpl.ParseFS(t.fs, fmt.Sprintf("public/%s.html", templateName))
 	if err != nil {
-		return echo.NewHTTPError(500, fmt.Sprintf("Template parse error: %v", err))
+		return echo.NewHTTPError(500, err)
 	}
 	return nil
 }
