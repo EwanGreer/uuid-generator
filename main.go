@@ -37,6 +37,9 @@ type CommitizenConfig struct {
 //go:embed public
 var publicFS embed.FS
 
+//go:embed .cz.toml
+var czFile string
+
 func main() {
 	_ = godotenv.Load()
 
@@ -57,13 +60,8 @@ func main() {
 		return c.NoContent(http.StatusOK)
 	})
 
-	f, err := os.ReadFile(".cz.toml")
-	if err != nil {
-		panic(err)
-	}
-
 	var config Config
-	if _, err := toml.Decode(string(f), &config); err != nil {
+	if _, err := toml.Decode(czFile, &config); err != nil {
 		log.Fatalf("Failed to decode TOML: %v", err)
 	}
 	version := config.Tool.Commitizen.Version
