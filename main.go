@@ -64,7 +64,7 @@ func main() {
 		}
 
 		data := map[string]any{
-			"title":        "Page",
+			"title":        "UUID Generator",
 			"uuid":         uuidValue,
 			"selectedType": uuidType,
 		}
