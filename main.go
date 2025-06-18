@@ -4,16 +4,35 @@ import (
 	"embed"
 	"fmt"
 	"html/template"
+	"log"
 	"log/slog"
 	"net/http"
 	"os"
 	"slices"
 
+	"github.com/BurntSushi/toml"
 	"github.com/google/uuid"
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
+
+type Config struct {
+	Tool ToolSection `toml:"tool"`
+}
+
+type ToolSection struct {
+	Commitizen CommitizenConfig `toml:"commitizen"`
+}
+
+type CommitizenConfig struct {
+	Name                  string `toml:"name"`
+	TagFormat             string `toml:"tag_format"`
+	VersionScheme         string `toml:"version_scheme"`
+	Version               string `toml:"version"`
+	UpdateChangelogOnBump bool   `toml:"update_changelog_on_bump"`
+	MajorVersionZero      bool   `toml:"major_version_zero"`
+}
 
 //go:embed public
 var publicFS embed.FS
@@ -37,6 +56,17 @@ func main() {
 	e.GET("/up", func(c echo.Context) error {
 		return c.NoContent(http.StatusOK)
 	})
+
+	f, err := os.ReadFile(".cz.toml")
+	if err != nil {
+		panic(err)
+	}
+
+	var config Config
+	if _, err := toml.Decode(string(f), &config); err != nil {
+		log.Fatalf("Failed to decode TOML: %v", err)
+	}
+	version := config.Tool.Commitizen.Version
 
 	e.GET("/", func(c echo.Context) error {
 		uuidType := c.QueryParam("type")
@@ -69,6 +99,7 @@ func main() {
 			"title":        "UUID Generator",
 			"uuid":         uuidValue,
 			"selectedType": uuidType,
+			"version":      version,
 		}
 
 		return tmpl.ExecuteTemplate(c.Response(), "base", data)
