@@ -10,3 +10,7 @@
 [tasks.run]
 description = "run the docker container"
 run = "docker run -p 3000:3000 ghcr.io/ewangreer/uuid-generator"
+
+[tasks.tag]
+description = "create a new tag"
+run = "cz bump; git push; git push --tags"
