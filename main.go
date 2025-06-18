@@ -32,6 +32,8 @@ func main() {
 	e.StaticFS("/static", publicFS)
 	base := template.Must(template.New("base").ParseFS(publicFS, "public/base.html"))
 
+	e.FileFS("/favicon.ico", "public/favicon.ico", publicFS)
+
 	e.GET("/up", func(c echo.Context) error {
 		return c.NoContent(http.StatusOK)
 	})
