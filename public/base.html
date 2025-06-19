@@ -48,7 +48,13 @@
   </head>
   <body class="text-base-content min-h-screen roboto">
     <header></header>
-    <main>{{ template "content" . }}</main>
+    <main
+      class="grid grid-cols-[1fr_minmax(0,640px)_1fr] h-screen w-screen bg-base-100 text-base-content"
+    >
+      <div></div>
+      {{ template "content" . }}
+      <div></div>
+    </main>
     <footer
       class="flex flex-col items-center justify-center w-full px-4 py-6 text-sm text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700 bg-gray-5"
     >

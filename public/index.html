@@ -1,46 +1,38 @@
 {{ define "content" }}
 
-<div class="grid grid-cols-[1fr_minmax(0,640px)_1fr] h-screen w-screen bg-base-100 text-base-content">
-  <div></div>
-
-  <div class="relative flex flex-col justify-center items-center px-6">
-    <!-- Positioned notification -->
-    <div
-      id="copy-notification"
-      class="absolute top-10 translate-y-full alert alert-success shadow-lg w-fit transition-opacity duration-500 hidden opacity-100"
-    >
-      <span>UUID copied to clipboard!</span>
-    </div>
-
-    <h1 class="text-5xl font-bold mb-6">UUID Generator</h1>
-
-    <div class="flex items-center gap-3 mb-4">
-      <div
-        id="uuid"
-        class="text-2xl font-mono bg-base-200 rounded px-4 py-2 w-[38ch] text-center whitespace-nowrap overflow-x-auto overflow-y-hidden"
-      >
-        <span>{{ .uuid }}</span><span class="inline-block w-2"></span>
-      </div>
-      <button class="btn btn-primary" onclick="myFunction()">Copy</button>
-    </div>
-
-    <p class="text-sm text-base-content/70 mb-8">
-      Refresh or generate to get a new UUID.
-    </p>
-
-    <form method="GET" action="/" class="flex flex-col sm:flex-row items-center gap-3">
-      <label for="uuid-type" class="font-semibold">UUID Version:</label>
-      <select name="type" id="uuid-type" class="select select-bordered cursor-pointer">
-        <option value="v4" {{ if eq .selectedType "v4" }}selected{{ end }}>v4</option>
-        <option value="v7" {{ if eq .selectedType "v7" }}selected{{ end }}>v7</option>
-      </select>
-      <button type="submit" class="btn btn-secondary">Generate</button>
-    </form>
-
-    <div></div>
+<div class="relative flex flex-col justify-center items-center px-6">
+  <!-- Positioned notification -->
+  <div
+    id="copy-notification"
+    class="absolute top-10 translate-y-full alert alert-success shadow-lg w-fit transition-opacity duration-500 hidden opacity-100"
+  >
+    <span>UUID copied to clipboard!</span>
   </div>
 
-  <div></div>
+  <h1 class="text-5xl font-bold mb-6">UUID Generator</h1>
+
+  <div class="flex items-center gap-3 mb-4">
+    <div
+      id="uuid"
+      class="text-2xl font-mono bg-base-200 rounded px-4 py-2 w-[38ch] text-center whitespace-nowrap overflow-x-auto overflow-y-hidden"
+    >
+      <span>{{ .uuid }}</span><span class="inline-block w-2"></span>
+    </div>
+    <button class="btn btn-primary" onclick="myFunction()">Copy</button>
+  </div>
+
+  <p class="text-sm text-base-content/70 mb-8">
+    Refresh or generate to get a new UUID.
+  </p>
+
+  <form method="GET" action="/" class="flex flex-col sm:flex-row items-center gap-3">
+    <label for="uuid-type" class="font-semibold">UUID Version:</label>
+    <select name="type" id="uuid-type" class="select select-bordered cursor-pointer">
+      <option value="v4" {{ if eq .selectedType "v4" }}selected{{ end }}>v4</option>
+      <option value="v7" {{ if eq .selectedType "v7" }}selected{{ end }}>v7</option>
+    </select>
+    <button type="submit" class="btn btn-secondary">Generate</button>
+  </form>
 </div>
 
 {{ end }}
