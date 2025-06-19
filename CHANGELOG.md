@@ -1,3 +1,14 @@
+## 0.11.0 (2025-06-19)
+
+### Feat
+
+- password generator
+- restructure
+
+### Fix
+
+- refactor layout
+
 ## 0.10.1 (2025-06-19)
 
 ### Fix
