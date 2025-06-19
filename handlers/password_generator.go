@@ -74,6 +74,10 @@ func (h *Handler) HandlePasswordGeneratorPage(c echo.Context) error {
 }
 
 func generateRandomHash(length int, uppercase bool, symbols bool) (string, error) {
+	if length < 0 {
+		length *= -1
+	}
+
 	charset := "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[]{}|;:,.<>?/"
 	if !symbols {
 		charset = charset[:27]
