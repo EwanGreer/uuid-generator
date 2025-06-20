@@ -2,8 +2,8 @@ package templater
 
 import (
 	"embed"
-	"fmt"
 	"html/template"
+	"path/filepath"
 
 	"github.com/labstack/echo/v4"
 )
@@ -18,8 +18,14 @@ func NewTemplater(fs embed.FS) *templater {
 	}
 }
 
-func (t *templater) FindTemplate(tmpl *template.Template, templateName string) error {
-	_, err := tmpl.ParseFS(t.fs, fmt.Sprintf("public/%s.html", templateName))
+func (t *templater) FindTemplate(tmpl *template.Template, templateNames ...string) error {
+	joinedPaths := []string{}
+	for _, name := range templateNames {
+		name = name + ".html"
+		joinedPaths = append(joinedPaths, filepath.Join("public", name))
+	}
+
+	_, err := tmpl.ParseFS(t.fs, joinedPaths...)
 	if err != nil {
 		return echo.NewHTTPError(500, err)
 	}

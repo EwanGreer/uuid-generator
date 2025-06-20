@@ -31,7 +31,7 @@ type CommitizenConfig struct {
 	MajorVersionZero      bool   `toml:"major_version_zero"`
 }
 
-//go:embed public
+//go:embed public/*
 var publicFS embed.FS
 
 //go:embed .cz.toml

@@ -20,7 +20,7 @@ func (h *Handler) HandleIndexPage(c echo.Context) error {
 	tmpl := template.Must(h.Base.Clone())
 	t := templater.NewTemplater(h.PublicFS)
 
-	err := t.FindTemplate(tmpl, "index")
+	err := t.FindTemplate(tmpl, "_nav", "index")
 	if err != nil {
 		return echo.NewHTTPError(500, fmt.Sprintf("Template parse error: %v", err))
 	}

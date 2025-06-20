@@ -16,7 +16,7 @@ import (
 func (h *Handler) HandlePasswordGeneratorPage(c echo.Context) error {
 	passwordLength := c.FormValue("password-length")
 	if passwordLength == "" {
-		passwordLength = "0"
+		passwordLength = "10"
 	}
 
 	pwl, err := strconv.Atoi(passwordLength)
@@ -51,7 +51,7 @@ func (h *Handler) HandlePasswordGeneratorPage(c echo.Context) error {
 	tmpl := template.Must(h.Base.Clone())
 	t := templater.NewTemplater(h.PublicFS)
 
-	err = t.FindTemplate(tmpl, "password-generator")
+	err = t.FindTemplate(tmpl, "_nav", "password-generator")
 	if err != nil {
 		return echo.NewHTTPError(500, fmt.Sprintf("Template parse error: %v", err))
 	}

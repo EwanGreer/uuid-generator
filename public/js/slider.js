@@ -1,8 +1,15 @@
-var slider = document.getElementById("password-length-slider");
-var output = document.getElementById("password-length-slider-length");
-output.innerHTML = slider.value; // Display the default slider value
+document.addEventListener("DOMContentLoaded", function () {
+  const slider = document.getElementById("password-length-slider");
+  const output = document.getElementById("password-length-slider-length");
 
-// Update the current slider value (each time you drag the slider handle)
-slider.oninput = function () {
-  output.innerHTML = this.value;
-};
+  if (slider && output) {
+    console.log("Slider value:", slider.value); // ← check this in console
+    output.textContent = slider.value;
+
+    slider.addEventListener("input", function () {
+      output.textContent = this.value;
+    });
+  } else {
+    console.warn("Slider or output not found");
+  }
+});
