@@ -1,3 +1,11 @@
+## 0.12.0 (2025-06-20)
+
+### Feat
+
+- nav bar
+- init tests
+- password generator page
+
 ## 0.11.0 (2025-06-19)
 
 ### Feat
