@@ -7,9 +7,13 @@
 
 [tasks]
 
-[tasks.run]
-description = "run the docker container"
+[tasks.run-pushed]
+description = "run the latest pushed docker container"
 run = "docker run -p 3000:3000 ghcr.io/ewangreer/uuid-generator"
+
+[tasks.run]
+description = "run the development build"
+run = "docker compose up --build"
 
 [tasks.tag]
 description = "create a new tag"
