@@ -1,3 +1,9 @@
+## 0.13.0 (2025-06-28)
+
+### Feat
+
+- prettier-ignore plus some restyling
+
 ## 0.12.1 (2025-06-21)
 
 ### Fix
