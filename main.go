@@ -15,20 +15,16 @@ import (
 )
 
 type Config struct {
-	Tool ToolSection `toml:"tool"`
-}
-
-type ToolSection struct {
-	Commitizen CommitizenConfig `toml:"commitizen"`
-}
-
-type CommitizenConfig struct {
-	Name                  string `toml:"name"`
-	TagFormat             string `toml:"tag_format"`
-	VersionScheme         string `toml:"version_scheme"`
-	Version               string `toml:"version"`
-	UpdateChangelogOnBump bool   `toml:"update_changelog_on_bump"`
-	MajorVersionZero      bool   `toml:"major_version_zero"`
+	Tool struct {
+		Commitizen struct {
+			Name                  string `toml:"name"`
+			TagFormat             string `toml:"tag_format"`
+			VersionScheme         string `toml:"version_scheme"`
+			Version               string `toml:"version"`
+			UpdateChangelogOnBump bool   `toml:"update_changelog_on_bump"`
+			MajorVersionZero      bool   `toml:"major_version_zero"`
+		} `toml:"commitizen"`
+	} `toml:"tool"`
 }
 
 //go:embed public/*

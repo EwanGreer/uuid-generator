@@ -1,4 +1,5 @@
 [env]
+PORT = 3000
 
 [tools]
 "asdf:mise-plugins/mise-pipx" = "latest"
