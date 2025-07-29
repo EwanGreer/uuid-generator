@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const output = document.getElementById("password-length-slider-length");
 
   if (slider && output) {
-    console.log("Slider value:", slider.value); // ← check this in console
+    console.log("Slider value:", slider.value);
     output.textContent = slider.value;
 
     slider.addEventListener("input", function () {
