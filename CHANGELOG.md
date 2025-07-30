@@ -1,3 +1,9 @@
+## 0.16.0 (2025-07-30)
+
+### Feat
+
+- add version to health endpoint
+
 ## 0.15.0 (2025-07-30)
 
 ### Feat
