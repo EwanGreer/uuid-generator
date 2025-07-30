@@ -34,10 +34,13 @@ var publicFS embed.FS
 var czFile string
 
 func main() {
-	_ = godotenv.Load()
-
 	logger := slog.New(slog.NewJSONHandler(os.Stderr, nil))
 	slog.SetDefault(logger)
+
+	err := godotenv.Load()
+	if err != nil {
+		log.Println("no .env found. Loading system env")
+	}
 
 	e := echo.New()
 
